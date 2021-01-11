@@ -1,0 +1,7 @@
+const stringConnect = 'https://vouapp-api.herokuapp.com';
+
+const GET_LIST_MONEY_ITEM = 'GET_LIST_MONEY_ITEM';
+const GET_LIST_MONEY_ITEM_SUCCESS = 'GET_LIST_MONEY_ITEM_SUCCESS';
+const ADD_LIST_MONEY_ITEM = 'ADD_LIST_MONEY_ITEM';
+
+export { stringConnect, GET_LIST_MONEY_ITEM, ADD_LIST_MONEY_ITEM, GET_LIST_MONEY_ITEM_SUCCESS };
