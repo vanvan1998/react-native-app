@@ -2,8 +2,10 @@ import { constants } from '../constants/index';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const initialState = {
-    moneyItemList: [{ title: 'cause', value: 20000 }, { title: 'cause1', value: 40000 }],
-    total: 60000
+    moneyItemList: [{ title: 'cause', value: 40000 }, { title: 'cause1', value: 40000 }],
+    totalSpending: 80000,
+    totalIncome: 80000,
+    balance: 0
 };
 
 const MoneyItemReducer = (state = initialState, action) => {
@@ -12,9 +14,18 @@ const MoneyItemReducer = (state = initialState, action) => {
             return {
                 ...state,
                 moneyItemList: action.data.moneyItemList,
-                total: action.data.total
+                totalSpending: action.data.totalSpending,
+                totalIncome: action.data.totalIncome,
+                balance: action.data.balance,
             };
-
+        case constants.ADD_LIST_MONEY_ITEM_SUCCESS:
+            return {
+                ...state,
+                moneyItemList: action.data.moneyItemList,
+                totalSpending: action.data.totalSpending,
+                totalIncome: action.data.totalIncome,
+                balance: action.data.balance,
+            };
         default:
             return state;
     }

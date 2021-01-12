@@ -12,7 +12,13 @@ const GetListMoneyItemSuccessAction = (data) => ({
     data: data
 });
 
-const AddListMoneyItemAction = () => ({
+const AddListMoneyItemAction = (valueAdd) => ({
     type: constants.ADD_LIST_MONEY_ITEM,
+    data: valueAdd
 });
-export { GetListMoneyItemAction, AddListMoneyItemAction, GetListMoneyItemSuccessAction }
+
+const AddListMoneyItemSuccessAction = (data) => ({
+    type: constants.ADD_LIST_MONEY_ITEM_SUCCESS,
+    data: data
+});
+export { GetListMoneyItemAction, AddListMoneyItemAction, GetListMoneyItemSuccessAction, AddListMoneyItemSuccessAction }
