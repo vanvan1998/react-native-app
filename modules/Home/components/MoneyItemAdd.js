@@ -46,9 +46,9 @@ const styles = StyleSheet.create({
   textInput: {
     height: 40,
     borderRadius: 5,
-    borderBottomColor: 'grey',
-    borderBottomWidth: 1,
-    backgroundColor: '#eaf4f1',
+    // borderBottomColor: 'grey',
+    // borderBottomWidth: 1,
+    backgroundColor: '#e5e6eb',
     marginBottom: 20,
   },
   textInputTitle: {
@@ -57,11 +57,14 @@ const styles = StyleSheet.create({
   },
   button: {
     marginVertical: 10,
+    width: 200,
+    alignSelf:'center',
     backgroundColor: 'blue',
-    borderRadius: 5,
+    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
     height: 40,
+    backgroundColor:'#ff6f69'
   },
   titleText: {
     color: 'black',

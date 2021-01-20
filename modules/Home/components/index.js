@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, TouchableOpacity, Text, View, TextInput } from 'react-native';
 import MoneyItemAdd from './MoneyItemAdd';
+import Dialog from "react-native-dialog";
 
 function MoneyItemList(props) {
     const { totalIncome, totalSpending, balance } = props.moneyItemReducer
+    const [value, setValue] = useState(0)
+    const [visible, setVisible] = useState(false);
 
     useEffect(() => {
         try {
@@ -13,22 +16,46 @@ function MoneyItemList(props) {
         }
     }, [])
 
-    const handleUpdateItemTotal = () => {
+    const handleUpdateItemIncome = () => {
+        console.log('ssssssssssssssssssssssssssssssssssss')
+        setVisible(true);
     }
 
-    const renderItemTotal = (title, value, textColor) => {
+
+    const renderDialog = () => {
+        return (
+
+            <View>
+                {/* <TextInput keyboardType='numeric' autoCompleteType='cc-number'
+                            style={styles.textInput}
+                            defaultValue={value} onChangeText={text => { setValue(text) }}>
+                        </TextInput> */}
+                <Dialog.Container visible={visible}>
+                    <Dialog.Title>Account delete</Dialog.Title>
+                    <Dialog.Description>
+                        Do you want to delete this account? You cannot undo this action.
+                    </Dialog.Description>
+                    <Dialog.Button label="Cancel" onPress={handleCancel} />
+                    <Dialog.Button label="Delete" onPress={handleDelete} />
+                </Dialog.Container>
+            </View>
+        );
+    }
+
+    const renderItemTotal = (title, value, textColor, handleUpdateItemTotal) => {
         return <TouchableOpacity onPress={handleUpdateItemTotal}
-            style={[styles.button,, { backgroundColor: textColor }]}>
+            style={[styles.button, , { backgroundColor: textColor }]}>
             <Text style={[styles.textIncome, styles.text]}>{title}: {value}</Text>
         </TouchableOpacity>
     }
 
     return (
         <React.Fragment >
+            {renderDialog}
             <View style={styles.viewTotal}>
-                {renderItemTotal('Income', totalIncome, '#4279a3')}
-                {renderItemTotal('Spending', totalSpending, '#ff6f69')}
-                {renderItemTotal('Balance', balance, '#88d8b0')}
+                {renderItemTotal('Income', totalIncome, '#4279a3', handleUpdateItemIncome)}
+                {renderItemTotal('Spending', totalSpending, '#ff6f69', handleUpdateItemIncome)}
+                {renderItemTotal('Balance', balance, '#88d8b0', handleUpdateItemIncome)}
             </View>
             <MoneyItemAdd addListMoneyItem={props.addListMoneyItem}></MoneyItemAdd>
         </React.Fragment >
@@ -66,5 +93,13 @@ const styles = StyleSheet.create({
     },
     viewTotal: {
         flexDirection: 'column',
+    },
+    textInput: {
+        height: 40,
+        borderRadius: 5,
+        // borderBottomColor: 'grey',
+        // borderBottomWidth: 1,
+        backgroundColor: '#e5e6eb',
+        marginBottom: 20,
     },
 });
