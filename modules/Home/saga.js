@@ -1,6 +1,6 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import { constants } from '../constants/index';
-import { GetListMoneyItemSuccessAction, AddListMoneyItemSuccessAction } from '../actions/moneyItemAction';
+import { constants } from '../../constants/index';
+import { GetListMoneyItemSuccessAction, AddListMoneyItemSuccessAction } from './actions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function* addMoneyItem(actions) {

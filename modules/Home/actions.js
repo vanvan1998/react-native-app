@@ -1,4 +1,4 @@
-import { constants } from '../constants/index';
+import { constants } from '../../constants/index';
 import Toast from 'react-native-tiny-toast';
 
 const axios = require('axios');

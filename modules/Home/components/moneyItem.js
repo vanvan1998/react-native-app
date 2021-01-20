@@ -18,8 +18,8 @@ MoneyItem.defaultProps = {
 
 function MoneyItem(props) {
     const { item: { title, value }, navigation } = props
-
-    function handleMoneyItemClick(params) {
+    console.log(props)
+    function handleMoneyItemClick() {
         navigation.navigate('MoneyItemDetail', { MoneyItemName: title })
     }
     return (

@@ -4,11 +4,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React, { useEffect } from 'react';
 import 'react-native-gesture-handler';
 
-import store from './store';
+import store from './core/store';
 import { Provider } from 'react-redux';
 
-import Main from './Screen/main';
-import HomeStack from './Screen/homeStack';
+import Main from './modules/Main';
+import Home from './modules/Home';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -44,7 +44,7 @@ export default function App() {
             inactiveTintColor: 'gray',
           }}
         >
-          <Tab.Screen name="Home" component={HomeStack} />
+          <Tab.Screen name="Home" component={Home} />
           <Tab.Screen name="Main" component={Main} />
         </Tab.Navigator>
       </NavigationContainer>

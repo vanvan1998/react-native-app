@@ -1,4 +1,4 @@
-import { constants } from '../constants/index';
+import { constants } from '../../constants/index';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const initialState = {

@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { Button, FlatList, StyleSheet, Text } from 'react-native';
+import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import { AddListMoneyItemAction, GetListMoneyItemAction } from '../actions/moneyItemAction';
-import MoneyItem from '../components/moneyItem';
-import { connect } from 'react-redux';
+import MoneyItem from './moneyItem';
 
 
 function MoneyItemList(props) {
     const { navigation } = props
-    // const { moneyItemList, totalIncome, totalSpending, balance } = useSelector(state => {
-    //     return state.moneyItemReducer
-    // })
     const { moneyItemList, totalIncome, totalSpending, balance } = props.moneyItemReducer
 
     const [title, setTitle] = useState('')
@@ -27,20 +22,21 @@ function MoneyItemList(props) {
 
     return (
         <React.Fragment >
-            <Text style={styles.text}>totalIncome: {totalIncome}</Text>
-            <Text style={styles.text}>totalSpending: {totalSpending}</Text>
-            <Text style={styles.text}>balance: {balance}</Text>
+            <View style={styles.viewTotal}>
+                <Text style={[styles.textIncome, styles.text]}>Income: {totalIncome}</Text>
+                <Text style={[styles.textSpending, styles.text]}>Spending: {totalSpending}</Text>
+                <Text style={[styles.textBalance, styles.text]}>Balance: {balance}</Text>
+            </View>
             <FlatList data={moneyItemList}
                 renderItem={({ item }) => {
-                    return <MoneyItem item={item} navigation={navigation} ></MoneyItem>
-                }
-                }
+                    return <MoneyItem item={item} navigation={navigation} />
+                }}
                 keyExtractor={(item) => item.title}
                 contentContainerStyle={styles.scrollView}></FlatList>
-            <TextInput style={[styles.text, styles.textInput]} defaultValue={title} onChangeText={text => {
+            <TextInput style={[styles.textInput]} defaultValue={title} onChangeText={text => {
                 setTitle(text)
             }}></TextInput>
-            <TextInput keyboardType='numeric' autoCompleteType='cc-number' style={[styles.text, styles.textInput]} defaultValue={value} onChangeText={text => {
+            <TextInput keyboardType='numeric' autoCompleteType='cc-number' style={[styles.textInput]} defaultValue={value} onChangeText={text => {
                 setValue(text)
             }}></TextInput>
             <Button onPress={() => {
@@ -53,20 +49,7 @@ function MoneyItemList(props) {
     );
 }
 
-const mapStateToProps = state => {
-    return ({ moneyItemReducer: state.moneyItemReducer })
-};
-const mapDispatchToProps = dispatch => {
-    return {
-        GetListMoneyItemAction: () => dispatch(GetListMoneyItemAction()),
-        AddListMoneyItemAction: (valueAdd) => dispatch(AddListMoneyItemAction(valueAdd)),
-
-    }
-}
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(MoneyItemList);
+export default MoneyItemList;
 
 const styles = StyleSheet.create({
     container: {
@@ -81,11 +64,27 @@ const styles = StyleSheet.create({
         padding: 6,
     },
     text: {
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: 'bold',
-        padding: 0,
+        padding: 3,
         paddingHorizontal: 16,
-        color: '#f20a30'
+        color: 'white',
+        flex: 1,
+        borderRadius: 10,
+        margin: 5,
+    },
+    textIncome: {
+        backgroundColor: '#4279a3',
+    },
+    textSpending: {
+        backgroundColor: '#ff6f69',
+    },
+    textBalance: {
+        backgroundColor: '#88d8b0',
+    },
+    viewTotal: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
     textInput: { height: 40, borderColor: 'gray', borderWidth: 1, margin: 16 }
 });
