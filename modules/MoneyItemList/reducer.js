@@ -2,9 +2,9 @@ import { constants } from '../../constants/index';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const initialState = {
-    moneyItemList: [{ title: 'cause', value: 40000 }, { title: 'cause1', value: 40000 }],
-    totalSpending: 80000,
-    totalIncome: 80000,
+    moneyItemList: [],
+    totalSpending: 0,
+    totalIncome: 0,
     balance: 0
 };
 

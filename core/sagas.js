@@ -1,10 +1,10 @@
 import { all } from 'redux-saga/effects';
-import { WatchAddMoneyItem, WatchGetMoneyItemList } from '../modules/Home/saga';
+import { watchAddMoneyItem, watchGetMoneyItemList } from '../modules/MoneyItemList/saga';
 
 export default function* RootSaga() {
     yield all([
-        WatchAddMoneyItem(),
-        WatchGetMoneyItemList()
+        watchAddMoneyItem(),
+        watchGetMoneyItemList()
     ]
     );
 };

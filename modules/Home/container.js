@@ -1,5 +1,5 @@
-import Home from './components'
-import { AddListMoneyItemAction, GetListMoneyItemAction } from './actions';
+import MoneyItemList from './components'
+import { getListMoneyItem, addListMoneyItem } from '../MoneyItemList/actions'
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
@@ -7,11 +7,11 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        GetListMoneyItemAction: () => dispatch(GetListMoneyItemAction()),
-        AddListMoneyItemAction: (valueAdd) => dispatch(AddListMoneyItemAction(valueAdd)),
+        getListMoneyItem: () => dispatch(getListMoneyItem()),
+        addListMoneyItem: (valueAdd) => dispatch(addListMoneyItem(valueAdd)),
     }
 }
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Home);
+)(MoneyItemList);

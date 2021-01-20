@@ -8,7 +8,7 @@ import store from './core/store';
 import { Provider } from 'react-redux';
 
 import Main from './modules/Main';
-import Home from './modules/Home';
+import HomeStack from './modules/HomeStack';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -44,8 +44,8 @@ export default function App() {
             inactiveTintColor: 'gray',
           }}
         >
-          <Tab.Screen name="Home" component={Home} />
-          <Tab.Screen name="Main" component={Main} />
+          <Tab.Screen name="Home" component={HomeStack} />
+          <Tab.Screen name="Main" component={Main} options={{ title: 'Money Item List' }} />
         </Tab.Navigator>
       </NavigationContainer>
     </Provider>);

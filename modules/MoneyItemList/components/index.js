@@ -1,20 +1,15 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
-import MoneyItem from './moneyItem';
-
+import React, { useEffect } from 'react';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import MoneyItem from './MoneyItem';
+import MoneyItemAdd from './MoneyItemAdd';
 
 function MoneyItemList(props) {
     const { navigation } = props
     const { moneyItemList, totalIncome, totalSpending, balance } = props.moneyItemReducer
 
-    const [title, setTitle] = useState('')
-    const [value, setValue] = useState(0)
-
     useEffect(() => {
         try {
-            props.GetListMoneyItemAction()
+            props.getListMoneyItem()
         } catch (error) {
             console.log(error)
         }
@@ -27,24 +22,13 @@ function MoneyItemList(props) {
                 <Text style={[styles.textSpending, styles.text]}>Spending: {totalSpending}</Text>
                 <Text style={[styles.textBalance, styles.text]}>Balance: {balance}</Text>
             </View>
-            <FlatList data={moneyItemList}
+            <FlatList data={moneyItemList.reverse()}
                 renderItem={({ item }) => {
                     return <MoneyItem item={item} navigation={navigation} />
                 }}
                 keyExtractor={(item) => item.title}
                 contentContainerStyle={styles.scrollView}></FlatList>
-            <TextInput style={[styles.textInput]} defaultValue={title} onChangeText={text => {
-                setTitle(text)
-            }}></TextInput>
-            <TextInput keyboardType='numeric' autoCompleteType='cc-number' style={[styles.textInput]} defaultValue={value} onChangeText={text => {
-                setValue(text)
-            }}></TextInput>
-            <Button onPress={() => {
-                props.AddListMoneyItemAction({
-                    title: title, value: value
-                })
-            }} title='aaaa'></Button>
-
+            <MoneyItemAdd addListMoneyItem={props.addListMoneyItem}></MoneyItemAdd>
         </React.Fragment >
     );
 }

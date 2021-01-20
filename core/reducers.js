@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import moneyItemReducer from "../modules/Home/reducer";
+import moneyItemReducer from "../modules/MoneyItemList/reducer";
 
 const AppReducer = combineReducers({
     moneyItemReducer,

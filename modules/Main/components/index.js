@@ -1,16 +1,19 @@
 import React from 'react';
 import {View,Text} from 'react-native'
-import PropTypes from 'prop-types';
+import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler';
+import MoneyItemList from '../../MoneyItemList'
+import MoneyItemDetail from '../../MoneyItemDetail'
 
-Main.propTypes = {
-    
-};
+const Stack = createStackNavigator();
 
 function Main(props) {
     return (
-        <View>
-            <Text>Main</Text>
-        </View>
+        <Stack.Navigator initialRouteName="MoneyItemList">
+        <Stack.Screen name="MoneyItemList" component={MoneyItemList} options={{ title: 'Money Item List' }}>
+        </Stack.Screen>
+        <Stack.Screen name="MoneyItemDetail" component={MoneyItemDetail} options={{ title: 'Money Item Detail' }} />
+      </Stack.Navigator>
     );
 }
 

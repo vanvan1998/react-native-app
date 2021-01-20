@@ -1,5 +1,5 @@
-import Home from './components'
-import { addListMoneyItem, getListMoneyItem } from '../MoneyItemList/actions';
+import MoneyItemList from './components'
+import { addListMoneyItem, getListMoneyItem } from './actions';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
@@ -9,10 +9,9 @@ const mapDispatchToProps = dispatch => {
     return {
         getListMoneyItem: () => dispatch(getListMoneyItem()),
         addListMoneyItem: (valueAdd) => dispatch(addListMoneyItem(valueAdd)),
-
     }
 }
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Home);
+)(MoneyItemList);
